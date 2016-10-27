@@ -37,7 +37,7 @@ public class Making_Anagrams {
             if (characterCount.get(second.charAt(i)) != null) {
                 characterCount.put(second.charAt(i), characterCount.get(second.charAt(i)) - 1);
             } else {
-                characterCount.put(second.charAt(i), 1);
+                characterCount.put(second.charAt(i), -1);
             }
         }
 

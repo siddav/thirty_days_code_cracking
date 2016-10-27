@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class Hash_Tables_Ransom_Note {
     Map<String, Integer> magazineMap;
     Map<String, Integer> noteMap;
+    String ransomWords;
 
     public Hash_Tables_Ransom_Note(String magazine, String note) {
         magazineMap = new HashMap<String, Integer>();
@@ -19,22 +20,16 @@ public class Hash_Tables_Ransom_Note {
                 magazineMap.put(words[i], 1);
             }
         }
-        String[] ransomWords = note.split(" ");
-        for (int i = 0; i < ransomWords.length; i++) {
-            if (noteMap.containsKey(ransomWords[i])) {
-                noteMap.put(ransomWords[i], magazineMap.get(ransomWords[i]) + 1);
-            } else {
-                noteMap.put(ransomWords[i], 1);
-            }
-        }
+        ransomWords = note;
     }
 
     public boolean solve() {
-        for (String ransomWord : noteMap.keySet()) {
-            if (magazineMap.containsKey(ransomWord)) {
-                int number = magazineMap.get(ransomWord);
+        String[] words = ransomWords.split(" ");
+        for (String word : words) {
+            if (magazineMap.containsKey(word)) {
+                int number = magazineMap.get(word);
                 if (number > 0) {
-                    magazineMap.put(ransomWord, number - 1);
+                    magazineMap.put(word, number - 1);
                 } else {
                     return false;
                 }
